@@ -37,6 +37,15 @@ public class TarefaController {
         return ResponseEntity.ok(tarefaService.gravarTarefa(dto, token));
     }
 
+    @GetMapping("/all")
+    @Operation(summary = "Busca lista de tarefas por email de usuário",
+            description = "Busca tarefas cadastradas por usuário")
+    @ApiResponse(responseCode = "200", description = "Tarefas encontradas")
+    @ApiResponse(responseCode = "500", description = "Erro de servidor")
+    public ResponseEntity<List<TarefaDTOResponse>> buscaTarefasPorEmail(@RequestHeader(value = "Authorization", required = false) String token){
+        return ResponseEntity.ok(tarefaService.buscaTarefasPorEmail(token));
+    }
+
     @GetMapping("/eventos")
     @Operation(summary = "Busca tarefas por período", description = "Busca tarefas cadastradas por período")
     @ApiResponse(responseCode = "200", description = "Tarefas encontradas")
@@ -45,15 +54,6 @@ public class TarefaController {
                                                                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime dataFinal,
                                                                                  @RequestHeader(value = "Authorization", required = false) String token){
         return ResponseEntity.ok(tarefaService.buscaTarefasAgendadasPorPeriodo(dataInicial, dataFinal, token));
-    }
-
-    @GetMapping
-    @Operation(summary = "Busca lista de tarefas por email de usuário",
-               description = "Busca tarefas cadastradas por usuário")
-    @ApiResponse(responseCode = "200", description = "Tarefas encontradas")
-    @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<List<TarefaDTOResponse>> buscaTarefasPorEmail(@RequestHeader(value = "Authorization", required = false) String token){
-        return ResponseEntity.ok(tarefaService.buscaTarefasPorEmail(token));
     }
 
     @DeleteMapping
