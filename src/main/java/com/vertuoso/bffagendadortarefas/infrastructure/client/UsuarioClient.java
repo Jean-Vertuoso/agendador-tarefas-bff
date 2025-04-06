@@ -4,7 +4,9 @@ import com.vertuoso.bffagendadortarefas.business.dto.in.EnderecoDTORequest;
 import com.vertuoso.bffagendadortarefas.business.dto.in.LoginRequestDTO;
 import com.vertuoso.bffagendadortarefas.business.dto.in.TelefoneDTORequest;
 import com.vertuoso.bffagendadortarefas.business.dto.in.UsuarioDTORequest;
+import com.vertuoso.bffagendadortarefas.business.dto.out.ViaCepDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.vertuoso.bffagendadortarefas.business.dto.out.EnderecoDTOResponse;
@@ -49,4 +51,7 @@ public interface UsuarioClient {
     @PostMapping("/usuario/telefone")
     TelefoneDTOResponse cadastraTelefone(@RequestBody TelefoneDTORequest dto,
                                          @RequestHeader("Authorization") String token);
+
+    @GetMapping("/usuario/endereco/{cep}")
+    ViaCepDTOResponse buscarDadosCep(@PathVariable("cep") String cep);
 }
