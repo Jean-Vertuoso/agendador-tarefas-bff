@@ -4,6 +4,7 @@ import com.vertuoso.bffagendadortarefas.business.dto.in.EnderecoDTORequest;
 import com.vertuoso.bffagendadortarefas.business.dto.in.LoginRequestDTO;
 import com.vertuoso.bffagendadortarefas.business.dto.in.TelefoneDTORequest;
 import com.vertuoso.bffagendadortarefas.business.dto.in.UsuarioDTORequest;
+import com.vertuoso.bffagendadortarefas.business.dto.out.ViaCepDTOResponse;
 import org.springframework.stereotype.Service;
 
 import com.vertuoso.bffagendadortarefas.business.dto.out.EnderecoDTOResponse;
@@ -54,5 +55,9 @@ public class UsuarioService {
 
     public TelefoneDTOResponse cadastraTelefone(String token, TelefoneDTORequest telefoneDTO){
         return client.cadastraTelefone(telefoneDTO, token);
+    }
+
+    public ViaCepDTOResponse buscarEnderecoPorCep(String cep){
+        return client.buscarDadosCep(cep);
     }
 }
