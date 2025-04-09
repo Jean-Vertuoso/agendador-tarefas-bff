@@ -26,8 +26,8 @@ public interface UsuarioClient {
     @PostMapping("/usuario/login")
     String login(@RequestBody LoginRequestDTO usuarioDTO);
 
-    @DeleteMapping("/usuario/{email}")
-    Void deletaUsuarioPorEmail(@PathVariable String email,
+    @DeleteMapping("/usuario")
+    void deletaUsuarioPorEmail(@RequestParam("email") String email,
                                @RequestHeader("Authorization") String token);
 
     @PutMapping("/usuario")
