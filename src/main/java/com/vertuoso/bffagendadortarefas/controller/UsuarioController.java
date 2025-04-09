@@ -58,13 +58,13 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.salvaUsuario(usuarioDTO));
     }
 
-    @DeleteMapping("/{email}")
+    @DeleteMapping
     @Operation(summary = "Deletar Usuários por Id", description = "Deleta usuário")
     @ApiResponse(responseCode = "200", description = "Usuário deletado")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     @ApiResponse(responseCode = "403", description = "Usuário não cadastrado")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<Void> deletaUsuarioPorEmail(@PathVariable String email,
+    public ResponseEntity<Void> deletaUsuarioPorEmail(@RequestParam("email") String email,
                                                       @RequestHeader(value = "Authorization", required = false) String token){
         usuarioService.deletaUsuarioPorEmail(email, token);
         return ResponseEntity.ok().build();
