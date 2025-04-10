@@ -65,7 +65,7 @@ public class TarefaController {
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
     @ApiResponse(responseCode = "403", description = "Tarefa Id não encontrado")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<Void> deletaTarefaPorId(String id,
+    public ResponseEntity<Void> deletaTarefaPorId(@RequestParam("id") String id,
                                                   @RequestHeader(value = "Authorization", required = false) String token){
         tarefaService.deletaTarefaPorId(id, token);
         return ResponseEntity.ok().build();
