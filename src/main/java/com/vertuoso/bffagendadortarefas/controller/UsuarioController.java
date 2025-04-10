@@ -6,8 +6,10 @@ import com.vertuoso.bffagendadortarefas.business.dto.in.TelefoneDTORequest;
 import com.vertuoso.bffagendadortarefas.business.dto.in.UsuarioDTORequest;
 import com.vertuoso.bffagendadortarefas.business.dto.out.ViaCepDTOResponse;
 import com.vertuoso.bffagendadortarefas.business.services.UsuarioService;
+import com.vertuoso.bffagendadortarefas.infrastructure.security.SecurityConfig;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import com.vertuoso.bffagendadortarefas.business.dto.out.UsuarioDTOResponse;
 @RestController
 @RequestMapping("/usuario")
 @Tag(name = "Usuário", description = "Cadastro e login de usuários")
+@SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
 public class UsuarioController {
 
     private UsuarioService usuarioService;
